@@ -1,6 +1,6 @@
 # nsenter1
 
-[![Docker Build Status](https://img.shields.io/docker/build/subfuzion/nsenter1.svg)](subfuzion/nsenter1)
+[![Docker Build Status](https://img.shields.io/docker/pulls/justincormack/nsenter1.svg)](justincormack/nsenter1)
 
 Minimal image for `nsenter` to namespaces of PID 1
 
@@ -19,22 +19,23 @@ that prevents specifying the target pid.
 
 With this image, you can simply run the following:
 
-    $ docker run -it --rm --privileged --pid=host subfuzion/nsenter1
+    $ docker run -it --rm --privileged --pid=host justincormack/nsenter1
     / #
 
 ## So what is this good for
 
 `nsenter` allows you to enter a shell in a running container (technically into the namespaces that provide
 a container's isolation and limited access to system resources). The crazy thing is that this image allows
-you to run a privileged container that runs nsenter for the container running as pid 1. How is this useful?
+you to run a privileged container that runs nsenter for the process space running as pid 1. How is this useful?
 
-Well, this is useful when you are running a container-optimized Linux distribution such as [LinuxKit](https://blog.docker.com/2017/04/introducing-linuxkit-container-os-toolkit/).
+Well, this is useful when you are running a lightweight, container-optimized Linux distribution such as
+[LinuxKit](https://blog.docker.com/2017/04/introducing-linuxkit-container-os-toolkit/).
 Here is one simple example: say you want to teach a few people about Docker networking and you want to
 show them how to inspect the default bridge network after starting two containers using `ip addr show`;
 the problem is if you are demonstrating with Docker for Mac, for example, your containers are not running on
 your host directly, but are running instead inside of a minimal Linux OS virtual machine specially built for
 running containers, i.e., LinuxKit. But being a lightweight environment, LinuxKit isn't running `sshd`, so
-how do you get access to a shell so you can run `nsenter` to inspect the namespaces for the pid 1 container?
+how do you get access to a shell so you can run `nsenter` to inspect the namespaces for the process running as pid 1?
 
 Well, you could run the following:
 
@@ -45,7 +46,7 @@ with screen. It's not a big deal, but it's not optimal and it's also very specif
 we're already running Docker the general solution is ideal in this case:
 
 ```
-$ docker run -it --rm --privileged --pid=host subfuzion/nsenter1
+$ docker run -it --rm --privileged --pid=host justincormack/nsenter1
 / # ip a
 256: vethb72bfa3@if255: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue master docker0 state UP
     link/ether 7a:41:32:02:63:7c brd ff:ff:ff:ff:ff:ff
