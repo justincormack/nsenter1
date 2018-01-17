@@ -1,5 +1,0 @@
-FROM alpine
-RUN apk update && apk add build-base
-COPY nsenter1.c Dockerfile ./
-RUN cc -Wall -static nsenter1.c -o /usr/bin/nsenter1
-CMD ["tar", "cf", "-", "Dockerfile", "/usr/bin/nsenter1"]
