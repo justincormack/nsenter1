@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
 	char *cmd = shell;
 	char **args = def;
 	int fdm = open("/proc/1/ns/mnt", O_RDONLY);
+	int fdu = open("/proc/1/ns/uts", O_RDONLY);
 	int fdn = open("/proc/1/ns/net", O_RDONLY);
 	int fdi = open("/proc/1/ns/ipc", O_RDONLY);
 	int froot = open("/proc/1/root", O_RDONLY);
@@ -27,15 +28,19 @@ int main(int argc, char **argv) {
 	}
 
 	if (setns(fdm, 0) == -1) {
-		perror("setns");
+		perror("setns:mnt");
+		exit(1);
+	}
+	if (setns(fdu, 0) == -1) {
+		perror("setns:uts");
 		exit(1);
 	}
 	if (setns(fdn, 0) == -1) {
-		perror("setns");
+		perror("setns:net");
 		exit(1);
 	}
 	if (setns(fdi, 0) == -1) {
-		perror("setns");
+		perror("setns:ipc");
 		exit(1);
 	}
 	if (fchdir(froot) == -1) {
