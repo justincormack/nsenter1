@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 	int fdi = open("/proc/1/ns/ipc", O_RDONLY);
 	int froot = open("/proc/1/root", O_RDONLY);
 
-	if (fdm == -1 || fdn == -1 || fdi == -1 || froot == -1) {
+	if (fdm == -1 || fdu == -1 || fdn == -1 || fdi == -1 || froot == -1) {
 		fprintf(stderr, "Failed to open /proc/1 files, are you root?\n");
 		exit(1);
 	}
