@@ -39,7 +39,7 @@ how do you get access to a shell so you can run `nsenter` to inspect the namespa
 
 Well, you could run the following:
 
-    $ screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+    $ screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
 
 Docker for Mac does expose a screen session to attach to, but it's a bit less than ideal if you're not familiar
 with screen. It's not a big deal, but it's not optimal and it's also very specific to Docker for Mac. Since
