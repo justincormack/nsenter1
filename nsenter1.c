@@ -59,5 +59,5 @@ int main(int argc, char **argv) {
 		perror("execve");
 		exit(1);
 	}
-	exit(0);	
+	exit(0);
 }
