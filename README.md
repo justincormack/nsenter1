@@ -1,6 +1,6 @@
 # nsenter1
 
-[![Docker Build Status](https://img.shields.io/docker/pulls/justincormack/nsenter1.svg)](justincormack/nsenter1)
+[![Docker Build Status](https://img.shields.io/docker/pulls/justincormack/nsenter1.svg)](https://hub.docker.com/r/justincormack/nsenter1)
 
 Minimal image for `nsenter` to namespaces of PID 1
 
